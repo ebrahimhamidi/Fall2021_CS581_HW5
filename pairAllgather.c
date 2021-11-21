@@ -79,7 +79,7 @@ int main (int argc, char **argv) {
 	  }
 
       if (rank == 0) {
-	       printf ("Message size = %ld bytes, Maximum time = %g\n",
+	       printf ("(pair)Message size = %ld bytes, Maximum time = %g\n",
 		             msgsize * sizeof (int), t1 / 100.0);
       }	  
   }
