@@ -12,7 +12,7 @@
    Date: Nov. 19, 2021
    Email: shamidi1@crimson.ua.edu
    Course Section: CS 581
-   Homework-5 Collective Communication Implementation 
+   Homework-5 Collective Communication Implementation _ Version 1: gather followed by broadcast 
    gcc compiler:   mpicc -g -Wall -O -o allgather allgather.c
    to run: srun --mpi=pmi2 -n 8 ./allgather
 */
@@ -23,7 +23,7 @@
 #include <assert.h>
 
 #define MAXN 262144
-#define NTIMES 10
+#define NTIMES 100
 
 void allgather (void *sendbuf, int sendcount, MPI_Datatype sendtype,
 		void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
@@ -41,17 +41,19 @@ int main (int argc, char **argv) {
   sendbuf = (int *) malloc (sizeof (int) * MAXN);
   for (i = 0; i < MAXN; i++){
 		sendbuf[i] = rank * MAXN + i;
-		//printf ("[%d]sendbuf[%d] = %d \n", rank, i, sendbuf[i]);
 	}
   recvbuf = (int *) malloc (sizeof (int) * MAXN * size);
 
   for (msgsize = 8; msgsize <= MAXN; msgsize = msgsize << 1) {
+	  
       /* setup a synchronization point */
       MPI_Barrier (MPI_COMM_WORLD);
       t1 = MPI_Wtime ();
+	  
       /* include rest of the program here */
       for (i = 0; i < NTIMES; i++)
 	        allgather (sendbuf, msgsize, MPI_INT, recvbuf, msgsize, MPI_INT, MPI_COMM_WORLD);
+		
       /* program end here */
       t2 = MPI_Wtime () - t1;
 
@@ -110,6 +112,7 @@ void allgather (void *sendbuf, int sendcount, MPI_Datatype sendtype,
 	        MPI_Isend (recvbuf, sizeofrecvtype * recvcount * (size), MPI_CHAR, i, 0, comm, &request[i-1]);
       }
       MPI_Waitall (size - 1, request, status);
+	  
   } else {   
       MPI_Type_get_extent (recvtype, &lb, &sizeofrecvtype);
       MPI_Irecv (recvbuf, sizeofrecvtype * recvcount * (size), MPI_CHAR, 0, 0, comm, &request[0]);	  
