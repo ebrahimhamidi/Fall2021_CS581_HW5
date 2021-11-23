@@ -93,14 +93,14 @@ void allgather (void *sendbuf, int sendcount, MPI_Datatype sendtype,
 	        void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm) {
   int rank, size, i, offset;
   MPI_Status *status;
-  MPI_Request *request;
-  MPI_Aint lb, sizeofsendtype; //, sizeofrecvtype;
+  //MPI_Request *request;
+  MPI_Aint lb, sizeofsendtype;
 
   MPI_Comm_rank (comm, &rank);
   MPI_Comm_size (comm, &size);
 
   status = malloc (sizeof (MPI_Status) * (2));
-  request = malloc (sizeof (MPI_Request) * (2));
+  //request = malloc (sizeof (MPI_Request) * (2));
   
   MPI_Type_get_extent (sendtype, &lb, &sizeofsendtype);
 //  MPI_Isend (sendbuf, sizeofsendtype * sendcount, MPI_CHAR, rank, 0, comm, &request[0]);
@@ -111,8 +111,6 @@ void allgather (void *sendbuf, int sendcount, MPI_Datatype sendtype,
  // MPI_Irecv (bufptr, sizeofsendtype * sendcount, MPI_CHAR, rank, 0, comm, &request[1]);
   
 //  MPI_Waitall (2, request, MPI_STATUSES_IGNORE);
-//}
-
 
   	MPI_Sendrecv(sendbuf, sizeofsendtype * sendcount, MPI_CHAR, rank, 0, 
 		      bufptr, sizeofsendtype * sendcount, MPI_CHAR, rank, 0, 
@@ -137,7 +135,7 @@ void allgather (void *sendbuf, int sendcount, MPI_Datatype sendtype,
 	int StepSize;
     StepSize = power((double)2, (double)i);
 	
-		if ((DirPair & 1) == 0){
+	if ((DirPair & 1) == 0){
 		NextPair = rank + pairOffset;
 		offset_send = DirPair*StepSize ;
 		offset_recv = offset_send + pairOffset;
@@ -168,6 +166,6 @@ void allgather (void *sendbuf, int sendcount, MPI_Datatype sendtype,
 		      comm, status);
 }
 
-  free (request);
+  //free (request);
   free (status);
 }
