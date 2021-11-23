@@ -1,0 +1,55 @@
+setting dmc scratch directory
+ 
+============================================================
+=====         Summary of your script job               =====
+============================================================
+  The script file is: myscript.sh
+  The time limit is 12:00:00 HH:MM:SS.
+  The target directory is: /home/ualclsa0018/Fall2021_CS581_HW5
+  The working directory is:  /scratch-local/ualclsa0018.myscriptshSCRIPT.661769
+  The memory limit is: 16gb
+  The job will start running after: 2021-11-21T10:37:58
+  Job Name: myscriptshSCRIPT
+  Virtual queue: class
+  QOS: --qos=class
+  Constraints: --constraint=ivy-bridge
+  Using  16  cores on master node  dmc6
+  Node list:  dmc6
+  Nodes:  dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6 dmc6
+  Command typed:
+/apps/scripts/run_script_mpi myscript.sh     
+  Queue submit command:
+sbatch --qos=class -J myscriptshSCRIPT --begin=2021-11-21T10:37:58 --requeue --mail-user=shamidi1@crimson.ua.edu -o myscriptshSCRIPT.o661769 -t 12:00:00 -n 16 --mem-per-cpu=1000 --constraint=ivy-bridge 
+ 
+Message size = 32 bytes, Maximum time = 1.75292e-05
+Message size = 64 bytes, Maximum time = 1.25157e-05
+Message size = 128 bytes, Maximum time = 1.41811e-05
+Message size = 256 bytes, Maximum time = 2.82874e-05
+Message size = 512 bytes, Maximum time = 3.57565e-05
+Message size = 1024 bytes, Maximum time = 5.03388e-05
+Message size = 2048 bytes, Maximum time = 8.46529e-05
+Message size = 4096 bytes, Maximum time = 0.000153572
+Message size = 8192 bytes, Maximum time = 0.000276218
+Message size = 16384 bytes, Maximum time = 0.00053042
+Message size = 32768 bytes, Maximum time = 0.00101369
+Message size = 65536 bytes, Maximum time = 0.00204102
+Message size = 131072 bytes, Maximum time = 0.0040685
+Message size = 262144 bytes, Maximum time = 0.00834831
+Message size = 524288 bytes, Maximum time = 0.0170528
+Message size = 1048576 bytes, Maximum time = 0.0342903
+(pair)Message size = 32 bytes, Maximum time = 6.63053e-06
+(pair)Message size = 64 bytes, Maximum time = 4.08927e-06
+(pair)Message size = 128 bytes, Maximum time = 4.07644e-06
+(pair)Message size = 256 bytes, Maximum time = 5.25588e-06
+(pair)Message size = 512 bytes, Maximum time = 8.24724e-06
+(pair)Message size = 1024 bytes, Maximum time = 1.17931e-05
+(pair)Message size = 2048 bytes, Maximum time = 2.2505e-05
+(pair)Message size = 4096 bytes, Maximum time = 3.49094e-05
+(pair)Message size = 8192 bytes, Maximum time = 5.57807e-05
+(pair)Message size = 16384 bytes, Maximum time = 0.000101812
+(pair)Message size = 32768 bytes, Maximum time = 0.000181577
+(pair)Message size = 65536 bytes, Maximum time = 0.000335977
+(pair)Message size = 131072 bytes, Maximum time = 0.000648859
+(pair)Message size = 262144 bytes, Maximum time = 0.00189246
+(pair)Message size = 524288 bytes, Maximum time = 0.00465703
+(pair)Message size = 1048576 bytes, Maximum time = 0.0097507
